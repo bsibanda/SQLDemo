@@ -1,0 +1,3204 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/2/2017 5:19:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PBS47765L"
+  DTS:CreatorName="HQ\Benson.Sibanda"
+  DTS:DTSID="{389CD2B6-A3DF-4AB6-94D9-57CF6AB21AB3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Lookup"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{266FC8A5-CA10-412E-883A-BD7909128DD5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Lookup Category"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9EA5A25F-D3F4-4836-8AD9-7B01F43C9B16}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Lookup Category"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Lookup Category\Lookup Product Photo"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Product Photo"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Production].[ProductProductPhoto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Production].[ProductProductPhoto]) [refTable]
+where [refTable].[ProductID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductPhotoID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Primary" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ModifiedDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lookup Category\Lookup Product Photo.Connections[OleDbConnection]"
+                  connectionManagerID="{1011BD1F-5FAD-4C93-9FD6-97E963D21214}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AdventureWorks2014]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Lookup Category\Lookup Product Photo.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Lookup Product Photo.Inputs[Lookup Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Lookup Category\Lookup Product Photo.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Lookup Category\Lookup Product Photo.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Lookup Category\Lookup Product Photo.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Merge 1"
+              componentClassID="Microsoft.Merge"
+              contactInfo="Merge;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple sorted data flows into one sorted data flow. Unlike the Merge Join, all rows flow to the output. For example, combine two sorted lists of customers into a single sorted list. If sorting is not important, use the Union All transformation. "
+              name="Merge 1"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 1]"
+                  name="Merge Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 1].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 1].Columns[ProductPhotoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductPhotoID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ProductPhotoID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ProductPhotoID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 1].Columns[Primary]"
+                      cachedDataType="bool"
+                      cachedName="Primary"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[Primary]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[Primary]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 1].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 2]"
+                  name="Merge Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 2].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge 1.Inputs[Merge Input 2].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1]"
+                  isSorted="true"
+                  name="Merge Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="1" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ProductPhotoID]"
+                      name="ProductPhotoID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[Primary]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[Primary]"
+                      name="Primary" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Merge 1.Outputs[Merge Output 1].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Merge Product Photos"
+              componentClassID="Microsoft.Merge"
+              contactInfo="Merge;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple sorted data flows into one sorted data flow. Unlike the Merge Join, all rows flow to the output. For example, combine two sorted lists of customers into a single sorted list. If sorting is not important, use the Union All transformation. "
+              name="Merge Product Photos"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 1]"
+                  name="Merge Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 1].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 1].Columns[ProductPhotoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductPhotoID"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ProductPhotoID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductPhotoID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 1].Columns[Primary]"
+                      cachedDataType="bool"
+                      cachedName="Primary"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[Primary]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[Primary]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 1].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 2]"
+                  name="Merge Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 2].Columns[ProductPhotoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductPhotoID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ProductPhotoID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductPhotoID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 2].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 2].Columns[LargePhotoFileName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LargePhotoFileName"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[LargePhotoFileName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[LargePhotoFileName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 2].Columns[LargePhoto]"
+                      cachedDataType="image"
+                      cachedName="LargePhoto"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[LargePhoto]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[LargePhoto]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1]"
+                  name="Merge Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductPhotoID]"
+                      name="ProductPhotoID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[Primary]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[Primary]"
+                      name="Primary" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[LargePhotoFileName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[LargePhotoFileName]"
+                      name="LargePhotoFileName" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[LargePhoto]"
+                      dataType="image"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[LargePhoto]"
+                      name="LargePhoto" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Product"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Product"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Production].[Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lookup Category\Product.Connections[OleDbConnection]"
+                  connectionManagerID="{1011BD1F-5FAD-4C93-9FD6-97E963D21214}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AdventureWorks2014]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductNumber]"
+                      length="25"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductNumber]"
+                      name="ProductNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[MakeFlag]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[MakeFlag]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[MakeFlag]"
+                      name="MakeFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[FinishedGoodsFlag]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[FinishedGoodsFlag]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[FinishedGoodsFlag]"
+                      name="FinishedGoodsFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Color]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                      length="15"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Color]"
+                      name="Color"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SafetyStockLevel]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SafetyStockLevel]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SafetyStockLevel]"
+                      name="SafetyStockLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ReorderPoint]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ReorderPoint]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ReorderPoint]"
+                      name="ReorderPoint"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[StandardCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[StandardCost]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[StandardCost]"
+                      name="StandardCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ListPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ListPrice]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ListPrice]"
+                      name="ListPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Size]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Size]"
+                      length="5"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Size]"
+                      name="Size"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SizeUnitMeasureCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SizeUnitMeasureCode]"
+                      length="3"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SizeUnitMeasureCode]"
+                      name="SizeUnitMeasureCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[WeightUnitMeasureCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[WeightUnitMeasureCode]"
+                      length="3"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[WeightUnitMeasureCode]"
+                      name="WeightUnitMeasureCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Weight]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Weight]"
+                      name="Weight"
+                      precision="8"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DaysToManufacture]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[DaysToManufacture]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DaysToManufacture]"
+                      name="DaysToManufacture"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductLine]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductLine]"
+                      length="2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductLine]"
+                      name="ProductLine"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Class]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Class]"
+                      length="2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Class]"
+                      name="Class"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Style]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Style]"
+                      length="2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Style]"
+                      name="Style"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductSubcategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductSubcategoryID]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductSubcategoryID]"
+                      name="ProductSubcategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductModelID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductModelID]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductModelID]"
+                      name="ProductModelID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellStartDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SellStartDate]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellStartDate]"
+                      name="SellStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellEndDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SellEndDate]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellEndDate]"
+                      name="SellEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DiscontinuedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[DiscontinuedDate]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DiscontinuedDate]"
+                      name="DiscontinuedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[rowguid]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[rowguid]"
+                      name="rowguid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductNumber]"
+                      dataType="wstr"
+                      length="25"
+                      name="ProductNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[MakeFlag]"
+                      dataType="bool"
+                      name="MakeFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[FinishedGoodsFlag]"
+                      dataType="bool"
+                      name="FinishedGoodsFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                      dataType="wstr"
+                      length="15"
+                      name="Color" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SafetyStockLevel]"
+                      dataType="i2"
+                      name="SafetyStockLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ReorderPoint]"
+                      dataType="i2"
+                      name="ReorderPoint" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[StandardCost]"
+                      dataType="cy"
+                      name="StandardCost" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ListPrice]"
+                      dataType="cy"
+                      name="ListPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Size]"
+                      dataType="wstr"
+                      length="5"
+                      name="Size" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SizeUnitMeasureCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="SizeUnitMeasureCode" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[WeightUnitMeasureCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="WeightUnitMeasureCode" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Weight]"
+                      dataType="numeric"
+                      name="Weight"
+                      precision="8"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[DaysToManufacture]"
+                      dataType="i4"
+                      name="DaysToManufacture" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductLine]"
+                      dataType="wstr"
+                      length="2"
+                      name="ProductLine" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Class]"
+                      dataType="wstr"
+                      length="2"
+                      name="Class" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[Style]"
+                      dataType="wstr"
+                      length="2"
+                      name="Style" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductSubcategoryID]"
+                      dataType="i4"
+                      name="ProductSubcategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductModelID]"
+                      dataType="i4"
+                      name="ProductModelID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SellStartDate]"
+                      dataType="dbTimeStamp"
+                      name="SellStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[SellEndDate]"
+                      dataType="dbTimeStamp"
+                      name="SellEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[DiscontinuedDate]"
+                      dataType="dbTimeStamp"
+                      name="DiscontinuedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[rowguid]"
+                      dataType="guid"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductNumber]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductNumber]"
+                      name="ProductNumber" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[MakeFlag]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[MakeFlag]"
+                      name="MakeFlag" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[FinishedGoodsFlag]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[FinishedGoodsFlag]"
+                      name="FinishedGoodsFlag" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Color]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Color]"
+                      name="Color" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SafetyStockLevel]"
+                      dataType="i2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SafetyStockLevel]"
+                      name="SafetyStockLevel" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ReorderPoint]"
+                      dataType="i2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ReorderPoint]"
+                      name="ReorderPoint" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[StandardCost]"
+                      dataType="cy"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[StandardCost]"
+                      name="StandardCost" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ListPrice]"
+                      dataType="cy"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ListPrice]"
+                      name="ListPrice" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Size]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Size]"
+                      name="Size" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SizeUnitMeasureCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SizeUnitMeasureCode]"
+                      name="SizeUnitMeasureCode" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[WeightUnitMeasureCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[WeightUnitMeasureCode]"
+                      name="WeightUnitMeasureCode" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                      dataType="numeric"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Weight]"
+                      name="Weight"
+                      precision="8"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[DaysToManufacture]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[DaysToManufacture]"
+                      name="DaysToManufacture" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductLine]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductLine]"
+                      name="ProductLine" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Class]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Class]"
+                      name="Class" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Style]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[Style]"
+                      name="Style" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductSubcategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductSubcategoryID]"
+                      name="ProductSubcategoryID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductModelID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ProductModelID]"
+                      name="ProductModelID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SellStartDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SellStartDate]"
+                      name="SellStartDate" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SellEndDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[SellEndDate]"
+                      name="SellEndDate" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[DiscontinuedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[DiscontinuedDate]"
+                      name="DiscontinuedDate" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[rowguid]"
+                      dataType="guid"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[rowguid]"
+                      name="rowguid" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Product Photo"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Product Photo"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Production].[ProductProductPhoto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lookup Category\Product Photo.Connections[OleDbConnection]"
+                  connectionManagerID="{1011BD1F-5FAD-4C93-9FD6-97E963D21214}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AdventureWorks2014]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[ProductPhotoID]"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductPhotoID]"
+                      name="ProductPhotoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[Primary]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[Primary]"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[Primary]"
+                      name="Primary"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[ProductPhotoID]"
+                      dataType="i4"
+                      name="ProductPhotoID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[Primary]"
+                      dataType="bool"
+                      name="Primary" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ProductPhotoID]"
+                      name="ProductPhotoID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[Primary]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[Primary]"
+                      name="Primary" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\ProductProductPhoto"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ProductProductPhoto"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Production].[ProductPhoto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lookup Category\ProductProductPhoto.Connections[OleDbConnection]"
+                  connectionManagerID="{1011BD1F-5FAD-4C93-9FD6-97E963D21214}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AdventureWorks2014]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ProductPhotoID]"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ProductPhotoID]"
+                      name="ProductPhotoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbNailPhoto]"
+                      dataType="image"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ThumbNailPhoto]"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbNailPhoto]"
+                      name="ThumbNailPhoto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbnailPhotoFileName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ThumbnailPhotoFileName]"
+                      length="50"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbnailPhotoFileName]"
+                      name="ThumbnailPhotoFileName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhoto]"
+                      dataType="image"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[LargePhoto]"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhoto]"
+                      name="LargePhoto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhotoFileName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[LargePhotoFileName]"
+                      length="50"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhotoFileName]"
+                      name="LargePhotoFileName"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ProductPhotoID]"
+                      dataType="i4"
+                      name="ProductPhotoID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ThumbNailPhoto]"
+                      dataType="image"
+                      name="ThumbNailPhoto" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[ThumbnailPhotoFileName]"
+                      dataType="wstr"
+                      length="50"
+                      name="ThumbnailPhotoFileName" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[LargePhoto]"
+                      dataType="image"
+                      name="LargePhoto" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].ExternalColumns[LargePhotoFileName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LargePhotoFileName" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ProductPhotoID]"
+                      name="ProductPhotoID" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ThumbNailPhoto]"
+                      dataType="image"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ThumbNailPhoto]"
+                      name="ThumbNailPhoto" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ThumbnailPhotoFileName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ThumbnailPhotoFileName]"
+                      name="ThumbnailPhotoFileName" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[LargePhoto]"
+                      dataType="image"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[LargePhoto]"
+                      name="LargePhoto" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[LargePhotoFileName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[LargePhotoFileName]"
+                      name="LargePhotoFileName" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Lookup Category\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort.Inputs[Sort Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort.Inputs[Sort Input].Columns[ProductPhotoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductPhotoID"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductPhotoID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort.Inputs[Sort Input].Columns[Primary]"
+                      cachedDataType="bool"
+                      cachedName="Primary"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[Primary]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort.Inputs[Sort Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ProductPhotoID]"
+                      name="ProductPhotoID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ProductPhotoID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[Primary]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[Primary]"
+                      name="Primary">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[Primary]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Sort.Outputs[Sort Output].Columns[ModifiedDate]"
+                      name="ModifiedDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Lookup Category\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 1.Inputs[Sort Input].Columns[ProductPhotoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductPhotoID"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ProductPhotoID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 1.Inputs[Sort Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 1.Inputs[Sort Input].Columns[ThumbNailPhoto]"
+                      cachedDataType="image"
+                      cachedName="ThumbNailPhoto"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbNailPhoto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 1.Inputs[Sort Input].Columns[ThumbnailPhotoFileName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ThumbnailPhotoFileName"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbnailPhotoFileName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 1.Inputs[Sort Input].Columns[LargePhoto]"
+                      cachedDataType="image"
+                      cachedName="LargePhoto"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhoto]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 1.Inputs[Sort Input].Columns[LargePhotoFileName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LargePhotoFileName"
+                      lineageId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhotoFileName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ProductPhotoID]"
+                      name="ProductPhotoID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ProductPhotoID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ModifiedDate]"
+                      name="ModifiedDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ThumbNailPhoto]"
+                      dataType="image"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ThumbNailPhoto]"
+                      name="ThumbNailPhoto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbNailPhoto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ThumbnailPhotoFileName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[ThumbnailPhotoFileName]"
+                      name="ThumbnailPhotoFileName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[ThumbnailPhotoFileName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[LargePhoto]"
+                      dataType="image"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[LargePhoto]"
+                      name="LargePhoto">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhoto]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[LargePhotoFileName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Category\Sort 1.Outputs[Sort Output].Columns[LargePhotoFileName]"
+                      name="LargePhotoFileName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output].Columns[LargePhotoFileName]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Sort 2"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 2"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Lookup Category\Sort 2.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ProductNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="ProductNumber"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductNumber]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[MakeFlag]"
+                      cachedDataType="bool"
+                      cachedName="MakeFlag"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[MakeFlag]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[FinishedGoodsFlag]"
+                      cachedDataType="bool"
+                      cachedName="FinishedGoodsFlag"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[FinishedGoodsFlag]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[Color]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Color"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Color]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[SafetyStockLevel]"
+                      cachedDataType="i2"
+                      cachedName="SafetyStockLevel"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SafetyStockLevel]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ReorderPoint]"
+                      cachedDataType="i2"
+                      cachedName="ReorderPoint"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ReorderPoint]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[StandardCost]"
+                      cachedDataType="cy"
+                      cachedName="StandardCost"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[StandardCost]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ListPrice]"
+                      cachedDataType="cy"
+                      cachedName="ListPrice"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ListPrice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[Size]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="Size"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Size]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[SizeUnitMeasureCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="SizeUnitMeasureCode"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SizeUnitMeasureCode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[WeightUnitMeasureCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="WeightUnitMeasureCode"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[WeightUnitMeasureCode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[Weight]"
+                      cachedDataType="numeric"
+                      cachedName="Weight"
+                      cachedPrecision="8"
+                      cachedScale="2"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Weight]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[DaysToManufacture]"
+                      cachedDataType="i4"
+                      cachedName="DaysToManufacture"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DaysToManufacture]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ProductLine]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ProductLine"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductLine]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[Class]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="Class"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Class]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[Style]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="Style"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Style]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ProductSubcategoryID]"
+                      cachedDataType="i4"
+                      cachedName="ProductSubcategoryID"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductSubcategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ProductModelID]"
+                      cachedDataType="i4"
+                      cachedName="ProductModelID"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductModelID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[SellStartDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SellStartDate"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellStartDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[SellEndDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="SellEndDate"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellEndDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[DiscontinuedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DiscontinuedDate"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DiscontinuedDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[rowguid]"
+                      cachedDataType="guid"
+                      cachedName="rowguid"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[rowguid]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 2.Inputs[Sort Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Sort 2.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Name]"
+                      name="Name"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductNumber]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductNumber]"
+                      name="ProductNumber"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductNumber]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[MakeFlag]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[MakeFlag]"
+                      name="MakeFlag">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[MakeFlag]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[FinishedGoodsFlag]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[FinishedGoodsFlag]"
+                      name="FinishedGoodsFlag">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[FinishedGoodsFlag]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Color]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Color]"
+                      name="Color"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Color]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SafetyStockLevel]"
+                      dataType="i2"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SafetyStockLevel]"
+                      name="SafetyStockLevel">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SafetyStockLevel]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ReorderPoint]"
+                      dataType="i2"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ReorderPoint]"
+                      name="ReorderPoint">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ReorderPoint]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[StandardCost]"
+                      dataType="cy"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[StandardCost]"
+                      name="StandardCost">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[StandardCost]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ListPrice]"
+                      dataType="cy"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ListPrice]"
+                      name="ListPrice"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ListPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Size]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Size]"
+                      name="Size">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Size]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SizeUnitMeasureCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SizeUnitMeasureCode]"
+                      name="SizeUnitMeasureCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SizeUnitMeasureCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[WeightUnitMeasureCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[WeightUnitMeasureCode]"
+                      name="WeightUnitMeasureCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[WeightUnitMeasureCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Weight]"
+                      dataType="numeric"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Weight]"
+                      name="Weight"
+                      precision="8"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Weight]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[DaysToManufacture]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[DaysToManufacture]"
+                      name="DaysToManufacture">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DaysToManufacture]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductLine]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductLine]"
+                      name="ProductLine">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductLine]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Class]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Class]"
+                      name="Class">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Class]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Style]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[Style]"
+                      name="Style">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[Style]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductSubcategoryID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductSubcategoryID]"
+                      name="ProductSubcategoryID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductSubcategoryID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductModelID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ProductModelID]"
+                      name="ProductModelID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ProductModelID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SellStartDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SellStartDate]"
+                      name="SellStartDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellStartDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SellEndDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[SellEndDate]"
+                      name="SellEndDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[SellEndDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[DiscontinuedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[DiscontinuedDate]"
+                      name="DiscontinuedDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[DiscontinuedDate]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[rowguid]"
+                      dataType="guid"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[rowguid]"
+                      name="rowguid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[rowguid]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Sort 2.Outputs[Sort Output].Columns[ModifiedDate]"
+                      name="ModifiedDate">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Product.Outputs[OLE DB Source Output].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Category\Sort 3"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 3"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Lookup Category\Sort 3.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 3.Inputs[Sort Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 3.Inputs[Sort Input].Columns[ProductPhotoID]"
+                      cachedDataType="i4"
+                      cachedName="ProductPhotoID"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductPhotoID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 3.Inputs[Sort Input].Columns[Primary]"
+                      cachedDataType="bool"
+                      cachedName="Primary"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[Primary]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Lookup Category\Sort 3.Inputs[Sort Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ModifiedDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Category\Sort 3.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ProductPhotoID]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ProductPhotoID]"
+                      name="ProductPhotoID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ProductPhotoID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[Primary]"
+                      dataType="bool"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[Primary]"
+                      name="Primary">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[Primary]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Lookup Category\Sort 3.Outputs[Sort Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1].Columns[ModifiedDate]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Lookup Category.Paths[Lookup Match Output]"
+              endId="Package\Lookup Category\Sort 2.Inputs[Sort Input]"
+              name="Lookup Match Output"
+              startId="Package\Lookup Category\Lookup Product Photo.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Lookup Category.Paths[Merge Output 1]"
+              endId="Package\Lookup Category\Sort 3.Inputs[Sort Input]"
+              name="Merge Output 1"
+              startId="Package\Lookup Category\Merge Product Photos.Outputs[Merge Output 1]" />
+            <path
+              refId="Package\Lookup Category.Paths[OLE DB Source Output]"
+              endId="Package\Lookup Category\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Lookup Category\Product Photo.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Lookup Category.Paths[OLE DB Source Output1]"
+              endId="Package\Lookup Category\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Lookup Category\ProductProductPhoto.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Lookup Category.Paths[OLE DB Source Output2]"
+              endId="Package\Lookup Category\Lookup Product Photo.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Lookup Category\Product.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Lookup Category.Paths[Sort Output]"
+              endId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 1]"
+              name="Sort Output"
+              startId="Package\Lookup Category\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Lookup Category.Paths[Sort Output1]"
+              endId="Package\Lookup Category\Merge Product Photos.Inputs[Merge Input 2]"
+              name="Sort Output"
+              startId="Package\Lookup Category\Sort 1.Outputs[Sort Output]" />
+            <path
+              refId="Package\Lookup Category.Paths[Sort Output2]"
+              endId="Package\Lookup Category\Merge 1.Inputs[Merge Input 1]"
+              name="Sort Output"
+              startId="Package\Lookup Category\Sort 3.Outputs[Sort Output]" />
+            <path
+              refId="Package\Lookup Category.Paths[Sort Output3]"
+              endId="Package\Lookup Category\Merge 1.Inputs[Merge Input 2]"
+              name="Sort Output"
+              startId="Package\Lookup Category\Sort 2.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\Lookup Category"
+          TopLeft="275,142" />
+        <AnnotationLayout
+          Text="Lookup Example:&#xA;Author: Benson Sibanda&#xA;CreatedOn: 02 September 2017&#xA;Description: An example of a product photo lookup. This can be improved &#xA;by writing up queries and sorting at the source as SORT is a BLOCKING &#xA;Transformation.&#xA;History:&#xA;DateModified:&#xA;ModifiedBy:&#xA;Reason:"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="424,184"
+          Id="d06e6100-6410-4107-a27a-50531c1b97e4"
+          TopLeft="463,110" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Lookup Category">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Lookup Category\Merge Product Photos"
+          TopLeft="249,278.017648019758" />
+        <NodeLayout
+          Size="107.2,41.6"
+          Id="Package\Lookup Category\Sort 3"
+          TopLeft="249.5,380.017648019758" />
+        <NodeLayout
+          Size="107.2,41.6"
+          Id="Package\Lookup Category\Sort 2"
+          TopLeft="48.5000000000001,374.017648019758" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Lookup Category\Product Photo"
+          TopLeft="167.5,82.0176480197577" />
+        <NodeLayout
+          Size="107.2,41.6"
+          Id="Package\Lookup Category\Sort 1"
+          TopLeft="398.5,162.017648019758" />
+        <NodeLayout
+          Size="116.8,41.6"
+          Id="Package\Lookup Category\Merge 1"
+          TopLeft="165.5,474.017648019758" />
+        <NodeLayout
+          Size="115.2,41.6"
+          Id="Package\Lookup Category\Product"
+          TopLeft="11.5,81.0176480197577" />
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\Lookup Category\Lookup Product Photo"
+          TopLeft="5.5,278.017648019758" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Lookup Category\ProductProductPhoto"
+          TopLeft="360,80.0176480197577" />
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Lookup Category\Sort"
+          TopLeft="189,169.017648019758" />
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[Sort Output]"
+          TopLeft="238,211.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73,67"
+              Start="0,0"
+              End="73,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.8496732026144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.8496732026144"
+                    Point2="0,39.8496732026144"
+                    Point3="4,39.8496732026144" />
+                  <mssgle:LineSegment
+                    End="69,39.8496732026144" />
+                  <mssgle:CubicBezierSegment
+                    Point1="69,39.8496732026144"
+                    Point2="73,39.8496732026144"
+                    Point3="73,43.8496732026144" />
+                  <mssgle:LineSegment
+                    End="73,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[OLE DB Source Output2]"
+          TopLeft="69,123.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28,155"
+              Start="0,0"
+              End="28,147.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,73.5"
+                    Point2="0,77.5"
+                    Point3="4,77.5" />
+                  <mssgle:LineSegment
+                    End="24,77.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24,77.5"
+                    Point2="28,77.5"
+                    Point3="28,81.5" />
+                  <mssgle:LineSegment
+                    End="28,147.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[OLE DB Source Output1]"
+          TopLeft="450.5,122.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[OLE DB Source Output]"
+          TopLeft="239,124.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[Merge Output 1]"
+          TopLeft="340,320.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36.9999999999999,60"
+              Start="0,0"
+              End="-36.9999999999999,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-32.9999999999999,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32.9999999999999,30"
+                    Point2="-36.9999999999999,30"
+                    Point3="-36.9999999999999,34" />
+                  <mssgle:LineSegment
+                    End="-36.9999999999999,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[Lookup Match Output]"
+          TopLeft="99.5,320.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,17.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[Sort Output3]"
+          TopLeft="102,416.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103.833333333333,58"
+              Start="0,0"
+              End="103.833333333333,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.3305227655987" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.3305227655987"
+                    Point2="0,34.3305227655987"
+                    Point3="4,34.3305227655987" />
+                  <mssgle:LineSegment
+                    End="99.8333333333333,34.3305227655987" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99.8333333333333,34.3305227655987"
+                    Point2="103.833333333333,34.3305227655987"
+                    Point3="103.833333333333,38.3305227655987" />
+                  <mssgle:LineSegment
+                    End="103.833333333333,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[Sort Output2]"
+          TopLeft="303,422.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-60.8333333333333,52"
+              Start="0,0"
+              End="-60.8333333333333,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.779089376054" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.779089376054"
+                    Point2="0,30.779089376054"
+                    Point3="-4,30.779089376054" />
+                  <mssgle:LineSegment
+                    End="-56.8333333333333,30.779089376054" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-56.8333333333333,30.779089376054"
+                    Point2="-60.8333333333333,30.779089376054"
+                    Point3="-60.8333333333333,34.779089376054" />
+                  <mssgle:LineSegment
+                    End="-60.8333333333333,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Lookup Category.Paths[Sort Output1]"
+          TopLeft="452,204.017648019758">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-83,74"
+              Start="0,0"
+              End="-83,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.0130718954248" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.0130718954248"
+                    Point2="0,44.0130718954248"
+                    Point3="-4,44.0130718954248" />
+                  <mssgle:LineSegment
+                    End="-79,44.0130718954248" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-79,44.0130718954248"
+                    Point2="-83,44.0130718954248"
+                    Point3="-83,48.0130718954248" />
+                  <mssgle:LineSegment
+                    End="-83,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Lookup Example:&#xA;Author: Benson Sibanda&#xA;CreatedOn: 02 September 2017&#xA;Description: An example of a product photo lookup. This can be improved &#xA;by writing up queries and sorting at the source as SORT is a BLOCKING &#xA;Transformation.&#xA;History:&#xA;DateModified:&#xA;ModifiedBy:&#xA;Reason:"
+          ParentId="Package\Lookup Category"
+          FontInfo="{assembly:Null}"
+          Size="423.2,184"
+          Id="9ed3628e-3049-4b86-8774-1b61da71006f"
+          TopLeft="549.057141611527,76.7411774486819" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Lookup Category\Product Photo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Lookup Category\Product">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Lookup Category\Lookup Product Photo">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Production].[ProductProductPhoto]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Lookup Category\ProductProductPhoto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
